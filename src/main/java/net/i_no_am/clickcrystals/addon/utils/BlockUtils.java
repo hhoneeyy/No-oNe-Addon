@@ -16,7 +16,7 @@ public class BlockUtils implements Global {
      * Finds the first BlockPos of the given block type within spherical render distance.
      */
     public static BlockPos findBlockPos(Block block) {
-        int chunkCount = mc.levelRenderer.countRenderedSections();
+        int chunkCount = mc.levelRenderer.visibleSections().size();
         int radius = Math.min((int) Math.floor(Math.sqrt(chunkCount) * 16), 3000);
 
         BlockPos playerPos = mc.player.blockPosition();

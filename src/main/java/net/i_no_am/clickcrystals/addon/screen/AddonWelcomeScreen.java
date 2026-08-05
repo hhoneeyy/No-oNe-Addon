@@ -83,7 +83,7 @@ public class AddonWelcomeScreen extends GuiScreen {
 
     public void setClose() {
         isClosed = true;
-        mc.setScreen(null);
+        mc.setScreenAndShow(null);
     }
 
     @Override

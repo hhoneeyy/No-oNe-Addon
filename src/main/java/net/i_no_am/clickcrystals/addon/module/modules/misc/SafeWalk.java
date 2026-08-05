@@ -23,6 +23,7 @@ public class SafeWalk extends AddonModule {
             .name("items-to-check")
             .description("Write down here the names of the items")
             .def("")
+            .visibleWhen(itemCheck::getVal)
             .build()
     );
 

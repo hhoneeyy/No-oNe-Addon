@@ -26,10 +26,10 @@ public class AddonVersion implements Global {
 
     public void notifyUpdate() {
         if (status == VersionStatus.UP_TO_DATE) return;
-        if (!prompted && mc.screen == null && mc.player != null) {
-            mc.setScreen(new ConfirmScreen(confirm -> {
+        if (!prompted && mc.gui.screen() == null && mc.player != null) {
+            mc.setScreenAndShow(new ConfirmScreen(confirm -> {
                 if (confirm) Util.getPlatform().openUri(URI.create(Constants.URL.DOWNLOAD));
-                else mc.destroy();
+                else mc.exitWorldAndClose();
             }, Component.nullToEmpty(ChatFormatting.DARK_RED + "You are using an outdated version of " + ChatFormatting.GREEN + "No one's Addon"), Component.nullToEmpty("Please download the latest version from " + ChatFormatting.DARK_PURPLE + "Discord"), Component.nullToEmpty("Download"), Component.nullToEmpty("Quit Game")));
             prompted = true;
         }

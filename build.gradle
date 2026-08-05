@@ -18,6 +18,18 @@ repositories {
 			includeGroup("maven.modrinth")
 		}
 	}
+	ivy {
+		setUrl("https://github.com/clickcrystals-development/ClickCrystals/releases/download")
+		patternLayout {
+			artifact("v[revision]/[module]-[classifier]-[revision].jar")
+		}
+		metadataSources {
+			artifact()
+		}
+		content {
+			includeGroup("clickcrystals-development")
+		}
+	}
 }
 
 dependencies {
@@ -25,7 +37,15 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	implementation files("libs/ClickCrystals-26.1-1.4.0.jar")
+	// local jar wins so unreleased ClickCrystals builds can be tested, otherwise pull the GitHub release
+	def localClickCrystals = fileTree("libs") { include "ClickCrystals-*.jar" }
+	if (!localClickCrystals.empty) {
+		logger.lifecycle("Using local ClickCrystals jar: ${localClickCrystals.files*.name.join(", ")}")
+		implementation localClickCrystals
+	}
+	else {
+		implementation "clickcrystals-development:ClickCrystals:${project.clickcrystals_version}:${project.minecraft_version}"
+	}
 }
 
 processResources {

@@ -22,7 +22,7 @@ public class CleanCommand extends Command {
     @Override
     public void build(LiteralArgumentBuilder<ClientSuggestionProvider> builder) {
         builder.then(literal("chat").executes(ctx -> {
-            mc.gui.getChat().clearMessages(true);
+            mc.gui.hud.getChat().clearMessages(true);
             return SINGLE_SUCCESS;
         })).then(literal("logs").then(argument("content", StringArgumentType.string()).executes(ctx -> {
             String content = StringArgumentType.getString(ctx, "content");
