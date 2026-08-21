@@ -32,7 +32,7 @@ public class QuitCommand extends Command {
 
         LiteralArgumentBuilder.<SharedSuggestionProvider>literal("mc")
                 .executes(_ -> {
-                    mc.destroy();
+                    mc.exitWorldAndClose();
                     return SINGLE_SUCCESS;
                 }).build();
     }

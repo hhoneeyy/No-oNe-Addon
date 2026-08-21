@@ -16,7 +16,7 @@
     "MixinChatScreen",
     "MixinDefaultBase",
     "MixinHomeScreen",
-    "MixinGui",
+    "MixinHud",
     "MixinKeyMapping",
     "MixinLivingEntityRenderer",
     "MixinOverlayTexture",

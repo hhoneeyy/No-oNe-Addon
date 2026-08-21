@@ -24,17 +24,18 @@ public class AntiOffHand extends AddonListenerModule {
             .build()
     );
 
-    public final ModuleSetting<String> mainHandList = scGeneral.add(createStringSetting()
-            .name("main-hand-item-list")
-            .description("List of items that prevent main-hand swap.")
-            .def("crystal,pearl,elytra,armor,sword")
-            .build()
-    );
-
     public final ModuleSetting<Boolean> disableMainHandSwap = scGeneral.add(createBoolSetting()
             .name("disable-main-hand-swap")
             .description("If enabled, swapping items from the main hand to the off-hand will be blocked if holding restricted items.")
             .def(false)
+            .build()
+    );
+
+    public final ModuleSetting<String> mainHandList = scGeneral.add(createStringSetting()
+            .name("main-hand-item-list")
+            .description("List of items that prevent main-hand swap.")
+            .def("crystal,pearl,elytra,armor,sword")
+            .visibleWhen(disableMainHandSwap::getVal)
             .build()
     );
 
